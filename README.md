@@ -1,1 +1,1 @@
-Coming soon 
+Blog Post to Master Typescript Generics
