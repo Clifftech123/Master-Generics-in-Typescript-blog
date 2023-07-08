@@ -1,1 +1,1 @@
-Blog Post to Master Typescript Generics
+Blog  Post to master  Typescript Generics: How to write a function that accepts any array of objects and returns the first item in the array
