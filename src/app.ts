@@ -65,3 +65,45 @@ console.log(instance1.getGenericProperty());
 
 let instance2 = new GenericClass<string>("Hello, world");
 console.log(instance2.getGenericProperty());
+
+
+
+// Interface with generic type 
+interface Box<T> {
+  value: T;
+}
+
+const box1: Box<number> = { value: 42 };
+const box2: Box<string> = { value: "Hello" };
+
+console.log(box1, box2); // { value: 42 } { value: 'Hello' }
+
+
+// Generic type with multiple arguments
+function genericFunction<T, U>(x: T, y: U): void {
+  console.log(x, y);
+}
+
+genericFunction<number, string>(1, "Hello"); // 1 "Hello"
+
+
+//  Generic Functions with Interfaces
+
+
+interface MathOperation<T> {
+  perform: (a: T, b: T) => T;
+}
+
+const add: MathOperation<number> = {
+  perform: (a, b) => a + b,
+};
+
+const concatenate: MathOperation<string> = {
+  perform: (a, b) => a + b,
+};
+
+console.log(add.perform(5, 10)); // Output: 15
+console.log(concatenate.perform("Hello, ", "World!"));
+
+
+
