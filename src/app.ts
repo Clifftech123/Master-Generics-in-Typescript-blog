@@ -106,4 +106,76 @@ console.log(add.perform(5, 10)); // Output: 15
 console.log(concatenate.perform("Hello, ", "World!"));
 
 
+// Generic Constraints
 
+//Example of constraint on generic function
+
+interface Lengthy {
+  length: number;
+}
+
+function printLength<T extends Lengthy>(arg: T): void {
+  console.log("Length:", arg.length);
+}
+
+printLength("Hello"); // Output: Length: 5
+printLength([1, 2, 3]); // Output: Length: 3
+printLength({ length: 10 }); // Output: Length: 10
+
+// printLength(42); // Error: Type 'number' does not satisfy the constraint 'Lengthy'.
+
+
+
+//Multiple Constraints:
+interface Printable {
+  print(): void;
+}
+
+interface Serializable {
+  serialize(): string;
+}
+
+function Process<T extends Printable & Serializable>(obj: T): void {
+  obj.print();
+  console.log("Serialized:", obj.serialize());
+}
+
+// Crating and instance of an object that satisfies the constraint
+const myObject: Printable & Serializable = {
+  print() {
+    console.log("Printing...");
+  },
+  serialize() {
+    return "Serialized data";
+  },
+};
+
+Process(myObject); // Output: Printing... Serialized: Serialized data
+
+
+
+
+
+// Using Type Constraints with Classes
+
+interface Animal {
+  name: string;
+}
+
+class Zoo<T extends Animal> {
+  constructor(private animals: T[]) {}
+
+  listAnimals(): void {
+    this.animals.forEach((animal) => {
+      console.log("Name:", animal.name);
+    });
+  }
+}
+
+const zoo = new Zoo([
+  { name: "Lion" },
+  { name: "Elephant" },
+  { name: "Giraffe" },
+]);
+
+zoo.listAnimals();
